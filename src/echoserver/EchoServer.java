@@ -8,12 +8,8 @@ import java.net.Socket;
 
 public class EchoServer {
 	
-	// REPLACE WITH PORT PROVIDED BY THE INSTRUCTOR
 	public static final int PORT_NUMBER = 6013; 
-	public static void main(String[] args) throws IOException, InterruptedException {
-		EchoServer server = new EchoServer();
-		server.start();
-	}public static void main(String[] args) throws IOException {
+        public static void main(String[] args) throws IOException, InterruptedException{
 	    try {
 		// Start listening on the specified port
 		ServerSocket sock = new ServerSocket(PORT_NUMBER);
