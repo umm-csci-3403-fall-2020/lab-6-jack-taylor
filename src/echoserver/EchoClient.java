@@ -11,47 +11,20 @@ public class EchoClient {
     public static void main(String[] args) throws IOException {
 
 	String server;
-
-	if (args.length == 0) {
-	    server = "127.0.0.1";
-	} else {
-	    server = args[0];
+	
+	// Setting up the constructor
+	public static void main(String[] args) throws Interrupted Exception {
+		EchoClient client = new EchoClient();
+		client.start();
 	}
 
-	try {
-	    Socket socket = new Socket(server, PORT_NUMBER);
-
-	    InputStream input = socket.getInputStream();
-	    OutputStream reader = socket.getOutputStream();
-
-	    int incByte;
-
-	    while ((incByte = System.in.read()) != -1) {
-		reader.write(incByte);
-		reader.flush();
-		System.out.write(input.read());
-		System.out.flush();
-	    }
-
-	    socket.close();
-	}
-
-
-	catch (ConnectException ce) {
-	    System.out.println("We were unable to connect to " + server);
-	    System.out.println("You should make sure the server is running.");
-	}
-	catch (IOException ioe) {
-	    System.out.println("We caught an unexpected exception.");
-	    System.err.println(ioe);
-	}
-    }
-
-    private void start() throws IOException {
-	Socket socket = new Socket("localhost", PORT_NUMBER);
-	InputStream socketInputStream = socket.getInputStream();
-	OutputStream socketOutputStream = socket.getOutputStream();
-
-	// Put your code here.
-    }
+   	private void start() throws IOException {
+		Socket socket = new Socket("localhost", PORT_NUMBER);
+		InputStream socketInputStream = socket.getInputStream();
+		OutputStream socketOutputStream = socket.getOutputStream();
+		Thread firstThread = new Thread(socketInputStream);
+		Thread secondThread = new Thread(socketOutputStream);
+		firstThread.start();
+		secondThread.start();
+    	}
 }
