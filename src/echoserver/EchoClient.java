@@ -10,21 +10,39 @@ public class EchoClient {
 
     public static void main(String[] args) throws IOException {
 
-	String server;
-	
 	// Setting up the constructor
 	public static void main(String[] args) throws Interrupted Exception {
+		
 		EchoClient client = new EchoClient();
 		client.start();
+	
 	}
 
    	private void start() throws IOException {
+		
 		Socket socket = new Socket("localhost", PORT_NUMBER);
+		
 		InputStream socketInputStream = socket.getInputStream();
 		OutputStream socketOutputStream = socket.getOutputStream();
+		
 		Thread firstThread = new Thread(socketInputStream);
 		Thread secondThread = new Thread(socketOutputStream);
+		
 		firstThread.start();
 		secondThread.start();
-    	}
+    	
+	}
+}
+
+public class Reader implements Runnable {
+	
+	InputStream input;
+	Socket soc;
+	
+	public Reader(Socket soc, InputStream input) {
+		
+		this.soc = soc;
+		this.input = input;
+	
+	}
 }
