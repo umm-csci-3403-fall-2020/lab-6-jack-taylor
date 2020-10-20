@@ -6,19 +6,18 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 public class EchoClient {
-    public static final int PORT_NUMBER = 6013;
-
-    public static void main(String[] args) throws IOException {
+    
+	public static final int PORT_NUMBER = 6013;
 
 	// Setting up the constructor
-	public static void main(String[] args) throws Interrupted Exception {
+	public static void main(String[] args) {
 		
 		EchoClient client = new EchoClient();
 		client.start();
 	
 	}
 
-   	private void start() throws IOException {
+   	private void start() {
 		
 		Socket socket = new Socket("localhost", PORT_NUMBER);
 		
@@ -71,4 +70,5 @@ public class Writer implements Runnable {
 	}
 	
 	soc.shutdownOutput();
+    }
 }
