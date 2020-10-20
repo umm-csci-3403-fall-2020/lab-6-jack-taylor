@@ -30,7 +30,6 @@ public class EchoClient {
 		
 		firstThread.start();
 		secondThread.start();
-    	
 	}
 }
 
@@ -43,6 +42,33 @@ public class Reader implements Runnable {
 		
 		this.soc = soc;
 		this.input = input;
-	
 	}
+
+	public void run() {
+		
+		while ((dataFeed = System.in.read()) != -1) {
+			System.out.write(dataFeed);
+			System.out.flush();
+		}
+		
+		soc.shutdownOutput();
+	}
+}
+
+public class Writer implements Runnable {
+	
+	OutputStream output;
+	Socket soc;
+
+	public Writer (Socket soc, OutputStream output) {
+		this.soc = soc;
+		this.output = output;
+	}
+	
+	while ((dataFeed = System.in.read()) != -1) {
+		output.write(dataFeed);
+		output.flush();
+	}
+	
+	soc.shutdownOutput();
 }
