@@ -50,10 +50,9 @@ public class Reader implements Runnable {
 			int dataFeed;
 		while ((dataFeed = System.in.read()) != -1) {
 			System.out.write(dataFeed);
-			System.out.flush();
 		}
-		
-		soc.shutdownOutput();
+		System.out.flush();
+		soc.shutdownInput();
 	} catch (IOException ioe){
 		System.out.println("We caught an unexpected exception");
 	}
@@ -75,8 +74,9 @@ public class Writer implements Runnable {
 		int dataFeed;
 		while ((dataFeed = System.in.read()) != -1) {
 			output.write(dataFeed);
-			output.flush();
-	} }catch (IOException ioe) {
+	} 
+	soc.shutdownOutput();
+	 }catch (IOException ioe) {
 		System.out.println("We caught an unexpected exception");
 	}
 	}
